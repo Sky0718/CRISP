@@ -1,0 +1,107 @@
+Exact allele identity and functional-evidence coverage
+
+This analysis links the complete candidate input pool to genomic allele
+identities and the corresponding functional evidence in a fixed CIViC
+snapshot. Matching eligibility uses the allele and evidence record,
+independently of allocation gain or loss. The annotation analysis is
+retrospective and post-exposure.
+
+Input population
+Allocation_and_Graph_Controls/Candidates/inputs/
+accepted_qualifying_variant_records.csv contains 184 source records,
+57 genes and 144 unique chromosome/position/ref/alt alleles. Identical allele
+queries are deduplicated while every source record and model/gene link
+remains represented. The pool includes candidate records and EGFR, KRAS and
+PTPN11 context records; its denominator is this input pool rather than the
+full universe of method selections. Genome assembly is identified from
+each source VCF header, with unresolved assembly recorded explicitly.
+
+Sources and snapshot
+The source snapshot is the CIViC 01-Oct-2026 monthly release. Source tables
+are VariantSummaries, MolecularProfileSummaries,
+AcceptedClinicalEvidenceSummaries, AcceptedAssertionSummaries and the
+accepted VCF where available. Source metadata include exact URL, retrieval
+UTC, SHA-256 and any unavailable record. CIViC curated data use CC0 1.0.
+
+Licensing: https://civicdb.org/releases/licensing
+Schema: https://docs.civicdb.org/en/latest/using/data_releases.html
+Evidence: https://docs.civicdb.org/en/latest/curating/evidence.html
+Significance: https://docs.civicdb.org/en/latest/model/evidence/significance.html
+Direction: https://docs.civicdb.org/en/latest/model/evidence/direction.html
+
+ClinGen Allele Registry provides canonical identity links through anonymous
+read-only HGVS queries:
+https://reg.clinicalgenome.org/doc/AlleleRegistry_1.01.xx_api_v1.pdf
+Requests contain public genomic HGVS expressions only, without model,
+donor, sample or allocation context. Cached responses and errors retain
+URL, status, time and hash.
+
+Identity rules
+Official GRCh38 assembly documentation supplies chromosome-to-RefSeq
+accessions. Source assembly and exact sequence alleles determine genomic
+HGVS for SNVs and supported simple variants. Ambiguous or unsupported
+normalisation leaves an unresolved identity.
+
+An eligible G identity is either an exact same-build normalised allele or
+an exact canonical registry identity connecting source and CIViC
+representatives. Returned sequence/build and local representation must
+agree. Coordinate-only cross-build joins, gene/codon/exon-only records,
+generic MUTATION records and complex profiles are ineligible as exact
+allele matches. Protein names are metadata; protein-only matching is
+outside this analysis.
+
+All exact CIViC matches are retained when the source gene agrees with the
+CIViC gene feature. An alias-based interpretation requires documented
+identifier equivalence.
+
+Functional evidence
+An eligible functional assignment uses accepted evidence of type Functional
+attached to a simple molecular profile containing one exactly matched
+variant. Other accepted evidence types remain coverage metadata, including
+Predictive, Diagnostic, Prognostic, Predisposing and Oncogenic records.
+
+Evidence records retain ID, PMID/source, molecular-profile and variant IDs,
+significance, direction, level, rating, statement, flags and review dates.
+Supports GOF, LOF, Unaltered, Neomorphic and Dominant Negative are distinct.
+Does Not Support GOF retains its original direction rather than being
+converted to LOF. Unknown significance remains unknown. Broad categorical
+or multi-variant AND/OR/NOT profiles have explicit exclusion reasons.
+
+An exact match with an accepted Functional record establishes database
+coverage. Assigning a functional direction to the study allele additionally
+requires the cited primary experiment to support that direction in the
+applicable context. Evidence from the original organoid study retains a
+separate source flag.
+
+Coverage, uncertainty and conflicts
+Evidence interpretation distinguishes six states:
+1. No canonical identity.
+2. Canonical identity without an exact CIViC record.
+3. Exact CIViC record without accepted Functional evidence.
+4. Accepted Functional evidence pending primary-source/context verification.
+5. Curated function with verified primary-source/context support.
+6. Conflicting or context-dependent evidence.
+
+Missing evidence remains unclassified. Sequence consequences and
+gene-level cancer roles are separate annotations. Compatible functional
+types and conflicting findings retain their assay contexts and source
+flags. A flagged record requires resolution before an unqualified
+functional interpretation.
+
+Coverage is reported against 144 unique alleles, 184 source records and
+57 genes, preserving duplicate records and gene/model multiplicity.
+A single annotated allele cannot determine uniform activation for a
+model/gene carrying several alleles. Cancer Hotspots and CGI annotations
+are outside this source specification.
+
+Consistency checks and interpretation
+The source records, allele and gene totals, return mappings, genome build,
+exact-match links, accepted status and simple-profile eligibility determine
+the coverage counts. Automated summaries stop at database coverage and
+retain unresolved identities and unavailable records. Primary-experiment
+interpretation follows the evidence rules above.
+
+Allocation comparisons apply the same annotation to both arms and retain
+the original donor weights. They are descriptive post-exposure associations.
+Input-pool identity coverage and verified functional-evidence coverage are
+separate endpoints.

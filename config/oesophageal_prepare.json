@@ -1,0 +1,13 @@
+{
+  "operation": "prepare",
+  "inputs": "../results/esca_inputs/inputs.json",
+  "common_genes": "../data/crc/first/common_genes.txt",
+  "native_genes_H0": "../data/crc/reconstruction/native_11_0_genes.txt",
+  "native_genes_H1": "../data/crc/reconstruction/native_11_5_genes.txt",
+  "edges_G0": "../data/crc/reconstruction/native_11_0_edges.tsv",
+  "edges_G1": "../data/crc/reconstruction/native_11_5_edges.tsv",
+  "normalise_source": "../external/TARGET-SL/scripts/DawnRank/DawnNormalize.R",
+  "rscript": "Rscript",
+  "r_libraries": [],
+  "output": "../results/esca_prepared"
+}

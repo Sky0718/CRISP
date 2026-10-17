@@ -1,0 +1,91 @@
+Relative connectivity and allocation correspondence
+
+This analysis relates changes in a candidate's connectivity rank within its
+model-specific query to gains and losses of selected allocation. It retains
+all categories and both directions in a finite, post-exposure descriptive
+comparison.
+
+Inputs and population
+The inputs are the G0_T700 and G1_T700 common-domain binary graphs from
+Allocation_and_Graph_Controls/Graph_Controls: gene_degrees.csv,
+ALLOCATION_FREEZE.json, graph_metadata.csv, both complete edge files and
+state-level endpoints for reconciliation.
+
+The domain contains 7,399 genes and 85 models from 83 donors. Queries,
+categories and allocations are fixed inputs. Structural endpoints require
+no functional labels. Model weight is
+
+alpha_s = 1/(83 * number_of_models_for_donor_s).
+
+Opportunity and allocation calculations use exact rational arithmetic.
+
+Categories
+ALL is accompanied by two separate exhaustive partitions:
+Core: BOTH_CORE, ORGANOID_ONLY, CELL_LINE_ONLY, NOT_LISTED_IN_EITHER.
+Role: ONCOGENE, TSG, DUAL_ONCOGENE_TSG, OTHER_OR_UNSPECIFIED, UNLISTED.
+The partitions overlap each other, so each reconciles separately with ALL.
+
+Domain structure
+Each category contributes gene count, old/new arithmetic mean and median
+degree, isolate counts and mean whole-domain degree midrank percentile.
+For n>1, L strictly lower degrees and T equal degrees define percentile
+
+[L+(T-1)/2]/(n-1).
+
+This degree-increasing rank retains tied isolates and distinguishes
+absolute connectivity contraction from relative position.
+
+Query opportunity
+Category opportunity is sum_s alpha_s * eligible_gene_count_s. The
+uniform-query ten-slot reference is
+
+10 * sum_s alpha_s * (category_query_count_s/full_query_count_s).
+
+Both are constant across graph states because queries are unchanged.
+Further endpoints are old/new donor-weighted connected eligible counts
+(degree>0) and pooled category-eligible within-query midrank percentile,
+
+(sum_s alpha_s sum_g percentile_sg)/(sum_s alpha_s n_category,s).
+
+This pooled mean weights every eligible model-gene opportunity by alpha_s.
+Empty category denominators yield null; within-query rank requires n>1.
+
+Allocation correspondence
+The four contrasts are:
+DawnRank joint: G0_T700_H0 -> G1_T700_H1.
+DawnRank graph at H0: G0_T700_H0 -> G1_T700_H0.
+DawnRank graph at H1: G0_T700_H1 -> G1_T700_H1.
+Same-query degree: G0_T700_DEGREE -> G1_T700_DEGREE.
+
+Each eligible model-gene identity is assigned its exact within-query degree
+percentile change: negative, zero or positive. In each category, contrast
+and stratum, positive and negative allocation differences are separated
+before donor averaging to give gross gain, gross loss and net change.
+Complete model-gene and donor records accompany these summaries; the
+model-gene records are nested observations rather than independent
+biological replicates.
+
+Numerical checks
+The graph sizes are 119,423 old edges and 65,783 new edges. Checks include
+degree sum=2E, agreement of gene degrees with full edges, the unique
+7,399-gene domain, all 85 models and 83 donors, exact alpha weights, and
+cross-input consistency of queries and categories.
+
+For every contrast, gross gain minus gross loss equals new-minus-old
+allocation. Each core and role partition independently sums to ALL;
+the three rank-change strata sum to the complete category change.
+Independent source state-level R totals provide a further reconciliation.
+Synthetic cases cover degree ties, isolates, ranks, unequal model counts
+per donor and opposing model-level flows.
+
+Interpretation and outputs
+The endpoints describe structural correspondence between connectivity and
+allocation. Degree can change as part of the network update. The joint
+comparison changes consumed evidence and graph state together, whereas
+each conditional graph comparison holds the evidence state fixed. The
+common binary graphs specify the DawnRank and degree calculations;
+PRODIGY uses wider weighted backgrounds.
+
+Outputs contain complete category/contrast records, input hashes and
+independent numerical comparisons. This finite descriptive analysis
+estimates neither causal mediation nor a population sampling distribution.

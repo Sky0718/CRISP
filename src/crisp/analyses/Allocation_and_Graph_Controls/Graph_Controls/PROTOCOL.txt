@@ -1,0 +1,89 @@
+Finite DawnRank graph-construction controls
+
+This analysis asks whether allocation differences persist across matched
+edge counts and alternative score thresholds. It compares the complete
+specified set of network constructions and retains changes in both
+directions. These are explanatory, post-exposure comparisons.
+
+Population and recurrence
+The population comprises 85 colorectal models from 83 donors, 7,399 common
+genes, both consumed-evidence states H0/H1 and each complete mutation query.
+The offered budget is ten, with fractional allocation at exact-score cutoff
+ties. The recurrence uses R 4.5.2, Matrix 1.7.4, mu=3, epsilon=1e-12 and
+maxit=10000. Deterministic seed references 104729, 130363, 155921, 196613 and
+228017 are aliases of the same DawnRank solution rather than replicate fits.
+The reference states comprise two graphs x two evidence states x 85 models,
+giving 340 score vectors.
+
+Graph construction
+Release-specific physical-network and protein-info sources are mapped through
+literal preferred names. Ambiguous names and loops are excluded. Equal scored
+reciprocal records collapse to canonical undirected edges on the common
+7,399-gene domain, including isolates. Original strictly >700 graphs contain
+119,423 old-release edges and 65,783 new-release edges.
+
+Ten control graphs are defined:
+1. Three old-release graphs containing its 65,783 highest-score edges.
+2. Three new-release graphs containing its 119,423 highest-score edges.
+3. Old and new graphs at each strict threshold >650 and >750, giving four
+   further graphs.
+
+For each edge-count target, all edges above the boundary score are included.
+The required number of boundary-tied edges is selected in ascending SHA-256
+order of seed + TAB + canonical gene1 + TAB + canonical gene2. The three tie
+seeds are 271828, 314159 and 173205. All three selections are reported,
+including their range. They represent boundary-tie choices, not biological
+replicates. Count matching also changes edge identities and degree
+distributions, so the contrast is not an isolated causal density intervention.
+
+Each graph defines a symmetric binary adjacency, column-normalised propagation
+matrix and degree/(degree+3) damping. These graph objects are distinct from
+the wider weighted backgrounds used by PRODIGY.
+
+States and contrasts
+Ten control graphs x two evidence states x 85 models define 1,700 full score
+vectors. Ten control degree rankings x 85 models define 850 model rankings,
+alongside the two reference degree graph states. Degree is H-independent.
+
+The nine graph pairs are the original >700 pair, three matched-65,783 pairs,
+three matched-119,423 pairs, the >650 pair and the >750 pair. Their two H
+backgrounds define 18 DawnRank contrasts. Nine degree contrasts give 27
+paired contrasts in total. H backgrounds and tie seeds remain distinct
+conditions. Complete graph/state levels accompany every contrast.
+
+Endpoints and labels
+Endpoints cover ALL, all four exclusive core classes and all five exclusive
+cancer-role classes: returned allocation R, measured-positive allocation H,
+measured-zero allocation, unknown allocation, and pooled measured-positive
+fraction where measurement is complete and the denominator is positive.
+Individual donor values accompany population summaries. Direct new-minus-old
+sharp bounds combine shared sample-gene coefficients before optimising
+unknown binary labels. Shared-core and oncogene-only summaries sit within
+the complete category partitions.
+
+Functional labels are excluded from graph construction and ranking.
+Allocations, the 27 coefficient maps and their selected identities define the
+label query. Calls use the same mapped Table 5 source and consistent
+selected-label caches, distinguishing measured zero, measured one,
+explicit-null and source-absent states. Source exposure makes these
+explanatory comparisons rather than independent biological validation.
+
+Numerical checks
+Fixtures cover threshold equality, score ties, reciprocal consistency,
+mapping ambiguity, exact target counts, tie hashes, normalisation orientation,
+isolates, direct-solve agreement, fractional cutoff ties, short queries,
+unequal model-per-donor weights and shared-label cancellation. Source
+ordering, complete populations and deterministic seed references are bound
+to the inputs.
+
+Every top-ten cutoff is assessed with the residual/contraction error bound.
+Nonconverged vectors and uncertified cutoffs remain explicit failures.
+Independent Python/SciPy reconstruction uses the exported binary64 matrices
+and q, compares complete query orders and allocations, and independently
+reconciles state and contrast aggregates.
+
+Output coverage
+Outputs contain native vectors, graph edges, boundary counts, full query
+rankings, contrast coefficients, selected-label identities and values,
+source bindings and numerical comparisons. The analysis is finite and
+descriptive; it introduces no resampling family or P values.

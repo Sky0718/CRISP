@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crisp-cancer"
+version = "1.0.0"
+description = "Cancer-gene Ranking Interpretation with Screen Profiles"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0 AND GPL-3.0-only"}
+authors = [{name = "Anonymized"}]
+dependencies = [
+    "numpy>=1.26.4,<3",
+    "pandas>=2.2,<3",
+    "scipy>=1.11,<2",
+]
+
+[project.optional-dependencies]
+figures = ["matplotlib==3.10.8"]
+
+[project.scripts]
+crisp = "crisp.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+license-files = ["LICENSE", "licenses/*"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["crisp*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"crisp" = ["**/*.R", "**/*.txt", "**/*.md"]
+
+[tool.setuptools.data-files]
+"share/crisp/config" = ["config/*.json"]

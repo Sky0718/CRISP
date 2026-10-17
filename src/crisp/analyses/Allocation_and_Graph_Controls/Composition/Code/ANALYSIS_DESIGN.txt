@@ -1,0 +1,57 @@
+Donor composition and continuous depletion analysis
+
+The analysis partitions changes in pooled functional fractions into
+within-donor changes and changes in donor representation. It uses fixed CRC
+allocation ledgers, the donor index and 10,000 paired whole-donor draws.
+Rankings, queries, categories, populations and seed averages are inputs;
+missing outcomes remain separate from measured zeros. The comparison is
+exploratory and was defined after exposure to the allocation results.
+
+Role-level allocation
+The old and joint-update functional_content/ledger.csv records define five
+exclusive roles: ONCOGENE, TSG, DUAL_ONCOGENE_TSG, OTHER_OR_UNSPECIFIED and
+UNLISTED. Exact rational sums give returned, positive, measured-zero and unknown
+allocation for every available policy. Each role partition reconciles with the
+complete population totals.
+
+Donor decomposition
+The three CRC policies are PRODIGY, strict DawnRank and full-query degree.
+For each policy and each focal class BOTH_CORE and ONCOGENE, all 83 donors
+are classified by old/new nonzero allocation support: common, entrant, exit
+or neither. Let p_t=sum_d b_dt/sum_d r_dt, a_dt=r_dt/sum_d r_dt and
+f_dt=b_dt/r_dt where r_dt>0. With pbar=(p0+p1)/2,
+
+ delta p = sum_both [(a1+a0)/2 * (f1-f0)]
+         + sum_both [(f1+f0)/2-pbar] * (a1-a0)
+         + sum_enter a1*(f1-pbar) - sum_exit a0*(f0-pbar).
+
+These four terms are within-common-donor fraction change, allocation
+reweighting, entry and exit. This exact midpoint-centred decomposition is
+descriptive. Zero-allocation fractions are undefined. The same identity
+applies to continuous depletion -LFC with f_dt=s_dt/r_dt; complete continuous
+measurement of both focal classes is a prerequisite checked from the sources.
+
+Continuous donor-composition family
+The 12 coordinates comprise three policies, two focal categories and two
+new-minus-old endpoints: weighted -LFC sum and pooled -LFC mean. Models have
+equal weight within donor and the 83 donors have equal weight. Every endpoint
+uses the same 10,000 paired donor draws, with ratios recomputed in each draw.
+Fixed original-donor scales are sample SD/sqrt(83). For a ratio difference,
+the donor influence is
+
+ (s1-Q1*r1)/R1 - (s0-Q0*r0)/R0.
+
+The common multiplier q is the linearly interpolated 0.95 quantile of the
+maximum absolute standardized deviation across all 12 coordinates.
+Untruncated envelopes are estimate +/- q*scale. Original or resampled zero
+denominators and degenerate scales are explicit undefined cases; donors,
+draws and coordinates remain represented. This family measures sensitivity
+to cohort composition, separately from other endpoint families.
+
+Outputs and consistency conditions
+CSV/JSON tables contain the complete role levels and donor-decomposition
+terms. Resampled endpoint arrays retain the 10,000 draws and all 12 coordinates.
+Exact source totals and allocation conservation constrain the summaries;
+direct donor-index and multiplicity calculations provide two evaluations of
+each continuous resample. Population identifiers, seed means and source
+checksums accompany the numerical records.

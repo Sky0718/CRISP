@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite CRISP and the accompanying research article when using this code."
+title: "CRISP: Cancer-gene Ranking Interpretation with Screen Profiles"
+type: software
+authors:
+  - family-names: Anonymized
+license:
+  - Apache-2.0
+  - GPL-3.0-only
+abstract: >-
+  Code for interpreting cancer-gene rankings with model-matched functional
+  screens, paired candidate identities, missing-outcome bounds, donor
+  decomposition, continuous depletion measurements and graph comparisons.
+keywords:
+  - cancer-gene prioritisation
+  - functional screens
+  - network updates
+  - colorectal cancer
+  - partial identification
