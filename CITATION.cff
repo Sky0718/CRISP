@@ -3,7 +3,9 @@ message: "Please cite CRISP and the accompanying research article when using thi
 title: "CRISP: Cancer-gene Ranking Interpretation with Screen Profiles"
 type: software
 authors:
-  - family-names: Anonymized
+  - family-names: Guan
+    given-names: Tianyi
+    orcid: "https://orcid.org/0009-0005-3379-6708"
 license:
   - Apache-2.0
   - GPL-3.0-only
