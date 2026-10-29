@@ -9,7 +9,7 @@ description = "Cancer-gene Ranking Interpretation with Screen Profiles"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0 AND GPL-3.0-only"}
-authors = [{name = "Anonymized"}]
+authors = [{name = "Tianyi Guan"}]
 dependencies = [
     "numpy>=1.26.4,<3",
     "pandas>=2.2,<3",
